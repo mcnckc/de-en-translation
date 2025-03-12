@@ -109,7 +109,7 @@ class GPT(nn.Module):
             probs = torch.stack([torch.full((B,), 0, device=device)])
             best_seqs = []
             best_probs = []
-            for i in tqdm(range(self.dataset.max_length - 2), leave=False, desc='Beam search progress'):
+            for i in range(self.dataset.max_length - 2):
                 nseqs = []
                 nprobs = []
                 for seq, prob in zip(seqs, probs):

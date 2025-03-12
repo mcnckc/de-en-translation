@@ -10,7 +10,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser("predictor")
     parser.add_argument("--checkpoint", dest="checkpoint", help="path to model checkpoint", type=str)
     args = parser.parse_args()
-    batch_size = 220
+    batch_size = 64
     train_set, valid_set = get_datasets(sub_sample=1, model_types=('word', 'word'), vocab_sizes=(30000, 20000), 
                                         full_vocabs=(False, False), max_length=82, mode='aligns',
                                         enable_dictionary=True, force_training=True)
