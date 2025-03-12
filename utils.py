@@ -2,7 +2,7 @@ import torch
 import time
 from dataset import TextDataset, TestDataset
 from torch.utils.data import DataLoader
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 from collections import OrderedDict
 import matplotlib.pyplot as plt
 import numpy as np
@@ -50,7 +50,6 @@ def predict(model, val_set: TextDataset, batch_size: int, num_workers: int, beam
     for de_indices, de_lengths, de_texts in tqdm(test_loader, desc='Predicting'):
         de_indices = de_indices[:, :de_lengths.max()].to(device)
         preds += model.inference(de_indices, de_lengths, de_texts, beam_size, lmbda)
-        print("PREDICTED:", de_indices.shape[0])
     
     with open('predictions.en', encoding='utf-8', mode='w') as file:
         file.writelines([pred + '\n' for pred in preds])

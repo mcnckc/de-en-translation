@@ -110,7 +110,6 @@ class GPT(nn.Module):
             best_seqs = []
             best_probs = []
             for i in range(self.dataset.max_length - 2):
-                print("BS: ", i)
                 nseqs = []
                 nprobs = []
                 for seq, prob in zip(seqs, probs):
@@ -143,7 +142,6 @@ class GPT(nn.Module):
         first_eos = (en_indices == self.dataset.en_eos_id).int().argmax(axis=1)
         for i in range(B):
             en_indices[i, first_eos[i] + 1:] = self.dataset.en_pad_id
-        print("FINISHED INFERECE")
         if return_indices:
             return self.dataset.ids2text(en_indices, 'en'), en_indices
         else:

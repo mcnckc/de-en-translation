@@ -68,7 +68,6 @@ class GPT_ILDUS(GPT):
                 de_word = de_words[i][aligns[unk_id - 1]]
                 translation = self.dataset.dictionary.get(de_word, de_word)
                 en_words[i][unk_id - 1] = translation
-        print("FINISHED INFERENCE 2")
         if return_indices:
             return [' '.join(words) for words in en_words], en_indices
         else:
