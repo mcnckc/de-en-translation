@@ -9,7 +9,7 @@ if __name__ == '__main__':
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     parser = argparse.ArgumentParser("predictor")
     parser.add_argument("--checkpoint", dest="checkpoint", help="path to model checkpoint", type=str)
-    parser.add_argument("--beam_size", dest="beam_size", nargs='?', const=40, help="Beam size in beam search", type=int)
+    parser.add_argument("--beam_size", dest="beam_size", default=40, help="Beam size in beam search", type=int)
     args = parser.parse_args()
     batch_size = 64
     train_set, valid_set = get_datasets(sub_sample=1, model_types=('word', 'word'), vocab_sizes=(30000, 20000), 
