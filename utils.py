@@ -58,7 +58,7 @@ def save_model(model, name: str):
     torch.save({'model_state_dict': model.state_dict()}, name + '.pt')
 
 def load_model(model, file: str):
-    checkpoint = torch.load(file)
+    checkpoint = torch.load(file, weights_only=True)
     model.load_state_dict(checkpoint['model_state_dict'])
     return model
 
